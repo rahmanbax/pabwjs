@@ -8,3 +8,7 @@ function tambah(x,y) {
 function kurang(x,y) {
     return x - y;
 };
+
+function kali(x,y) {
+    return x * y;
+};
