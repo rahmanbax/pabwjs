@@ -9,6 +9,10 @@ function jumlahDanSelect() {
   if (jumlah != "") {
     if (!buku.find(({ nama }) => nama === select_opt)) {
       alert("Buku tidak ditemukan");
+    } else {
+      if (jumlah > buku.find(({ nama }) => nama === select_opt).jumlah) {
+        alert("Jumlah buku tidak tersedia")
+      }
     }
   }
 }
