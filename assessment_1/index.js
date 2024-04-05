@@ -2,11 +2,15 @@ function jumlahDanSelect() {
   var jumlah = document.getElementById("jumlah").value;
   var select_opt = document.getElementById("select_option").value;
 
-  if (jumlah == "" || jumlah == null) {
-    alert("Textfield jumlah kosong")
+  if (jumlah == "") {
+    alert("Textfield jumlah kosong");
   }
 
-
+  if (jumlah != "") {
+    if (!buku.find(({ nama }) => nama === select_opt)) {
+      alert("Buku tidak ditemukan");
+    }
+  }
 }
 
 let buku = [
