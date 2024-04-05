@@ -13,6 +13,9 @@ function jumlahDanSelect() {
       if (jumlah > buku.find(({ nama }) => nama === select_opt).jumlah) {
         alert("Jumlah buku tidak tersedia")
       }
+      else if (jumlah <= buku.find(({ nama }) => nama === select_opt).jumlah) {
+        alert("Silahkan ambil buku anda")
+      }
     }
   }
 }
