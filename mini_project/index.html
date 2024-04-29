@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Nama Toko       : Sumber Rezeki</h3>
+    <h3>Nama Pengarang  : Abdurrahman Baasyir</h3>
+    <h3>Alamat          : Jl. Surga</h3>
+    <div>
+        
+    </div>
+    <table border="1">
+        <tr>
+          <th>Pengirim</th>
+          <th>Penerima</th>
+          <th>Judul</th>
+          <th>Isi Pesan</th>
+        </tr>
+        <tr>
+          <td id="pengirim-nama"></td>
+          <td id="penerima-nama"></td>
+          <td id="judul-pesan"></td>
+          <td id="isi-pesan"></td>
+        </tr>
+      </table>
+    <script>
+      const pengirimNama = document.getElementById("pengirim-nama");
+      const penerimaNama = document.getElementById("penerima-nama");
+      const judulPesan = document.getElementById("judul-pesan");
+      const isiPesan = document.getElementById("isi-pesan");
+
+      fetch("data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          pengirimNama.textContent = data.from;
+          penerimaNama.textContent = data.to;
+          judulPesan.textContent = data.heading;
+          isiPesan.textContent = data.body;
+        });
+    </script>
+  </body>
+</html>
