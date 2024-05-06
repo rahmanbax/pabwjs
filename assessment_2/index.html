@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Produk</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #dddddd; /* Tambahkan border pada tabel */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Data Produk</h2>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Judul</th>
+                <th>Deskripsi</th>
+                <th>Nama Penjual</th>
+                <th>Aksi</th> <!-- Tambahkan kolom untuk tombol hapus -->
+            </tr>
+        </thead>
+        <tbody id="data-container"></tbody>
+    </table>
+
+    <script>
+        // Fungsi untuk memuat data dari file JSON
+        function loadData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "data.json", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    displayData(data);
+                }
+            };
+            xhr.send();
+        }
+
+        // Fungsi untuk menampilkan data dalam bentuk tabel
+        function displayData(data) {
+            var tableBody = document.getElementById("data-container");
+            tableBody.innerHTML = ""; // Bersihkan konten sebelum menampilkan data baru
+            data.forEach(function(item) {
+                var row = document.createElement("tr");
+                row.innerHTML = "<td>" + item.foto + "</td>" +
+                                "<td>" + item.judul + "</td>" +
+                                "<td>" + item.deskripsi + "</td>" +
+                                "<td>" + item.nama_penjual + "</td>" +
+                                '<td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>'; // Tambahkan tombol hapus
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Fungsi untuk menghapus baris
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // Panggil fungsi loadData saat halaman dimuat
+        window.onload = function() {
+            loadData();
+        };
+    </script>
+</body>
+</html>
